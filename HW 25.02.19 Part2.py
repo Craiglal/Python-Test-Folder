@@ -1,23 +1,42 @@
-#class GraphicObject(object):
-#    def mouse_click(self):
+class GrafObj(object):
+    def show(self):
+        try:
+            self.on_click()
+        except AttributeError:
+            print(self.__class__.__name__, "can't be clicked!")
 
 
-class Square(object):
-    def __init__(self, width):
-        self.width = width
+class Square(GrafObj):
+    def __init__(self, length, text='*  '):
+        self.length = length
+        self.text = text
 
     def draw(self):
-        for i in range(self.width):
-            for j in range(self.width):
-                if i == 0 or i == self.width:
-                    print('*', end='')
-                elif 0 < i < self.width:
-                    if j == 0 or j == self.width:
-                        print('*', end='')
-        print()
+        for i in range(self.length):
+            for j in range(self.length):
+                print(self.text, end='')
+            print()
 
 
-#class Button(object):
+class Click(object):
+    def on_click(self):
+        print(self.__class__.__name__, "is clickable!")
 
-obj = Square(int(input("The width: ")))
-obj.draw()
+
+class Button(Square, Click):
+    def __init__(self, length, text="*  "):
+        super().__init__(length, text)
+
+
+def main():
+    square = Square(5)
+    square.draw()
+    square.show()
+
+    button = Button(5)
+    button.draw()
+    button.show()
+
+
+if __name__ == "__main__":
+    main()

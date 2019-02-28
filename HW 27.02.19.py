@@ -37,9 +37,11 @@ def inp():
             print(" = ", mul(num1, num2))
         else:
             print(" = ", div(num1, num2))
-    else:
+    elif op == '^':
         pwr = int(input("Enter the power(^): "))
         print(" = ", power(num1, pwr))
+    else:
+        print("Wrong operation!")
 
 
 def main():
