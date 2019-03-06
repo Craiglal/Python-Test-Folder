@@ -3,14 +3,13 @@ class MyException(Exception):
 
 
 def f(*args):
-    tmp = args
     count = 0
-    for x in tmp:
+    for x in args:
         if x % 2 == 1:
             count = count + 1
 
     if count % 2 == 1:
-        return tmp
+        return args
     else:
         raise MyException
 
